@@ -4,40 +4,31 @@ rand_data = [random.randint(0, 100) for i in range(10)]
 
 
 def swap(x: int, array: list):
-    tmp = array.pop(x)
-    array.insert(x + 1, tmp)
+    array[x], array[x+1] = array[x+1], array[x]
 
 
 def bubble_sort(array: list):
-    sorted_list = list(array)
-    for i in range(0, len(sorted_list) - 1):
-        change = False
-        for j in range(0, len(sorted_list) - i - 1):
-            if sorted_list[j] > sorted_list[j + 1]:
-                swap(j, sorted_list)
-                change = True
-        if not change:
-            break
-    return sorted_list
+    for i in range(len(array) - 1):
+        for j in range(len(array) - i - 1):
+            if array[j] > array[j + 1]:
+                swap(j, array)
+    return array
 
 
-def some_sort(array: list):
-    sorted_list = list(array)
-    index = 0
-    while index < len(sorted_list) - 1:
-        if sorted_list[index] > sorted_list[index + 1]:
-            swap(index, sorted_list)
-            if index > 0:
-                index -= 1
-        else:
-            index += 1
-    return sorted_list
+def bubble_sort_rec(array: list, n: int):
+    if n == 1:
+        return array
+    else:
+        for i in range(n - 1):
+            if array[i] > array[i + 1]:
+                swap(i, array)
+                bubble_sort_rec(array, n - 1)
+        return array
 
 
-print("Sortierte Liste:")
-print(some_sort(rand_data))
-print("\nRandom Liste:")
+print("Random Liste:")
 print(rand_data)
-print("\nBubblesort:")
-print(bubble_sort(rand_data))
-
+print("\nBubblesort rekursiv:")
+print(bubble_sort_rec(list(rand_data), len(rand_data)))
+print("\nBubblesort iterativ:")
+print(bubble_sort(list(rand_data)))
