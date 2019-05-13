@@ -8,9 +8,6 @@ def fac(n: int):
 
 
 def fac_rec(n: int):
-
-    # wird n+1 mal aufgerufen
-
     if n == 0:
         return 1
     else:
