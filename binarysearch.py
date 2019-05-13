@@ -13,5 +13,5 @@ def binary_search_rec(x: int, arr, start, end):
         return binary_search_rec(x, arr, start, mid - 1)
 
 
-data = [1, 1, 1, 2, 3, 3, 4, 5, 5]
+data = [1, 1, 1, 2, 3, 3, 4, 5, 5, 6]
 print(binary_search_rec(4, data, 0, len(data) - 1))
