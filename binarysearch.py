@@ -1,22 +1,17 @@
 
-def binary_search_rec(x: int, a, pos, end):
-
-    mid = (pos + end) // 2
-
-    if pos > end:
+def binary_search_rec(x: int, arr, start, end):
+    if start > end:
         return -1
-    elif a[mid] == x:
+
+    mid = (start + end) // 2
+
+    if arr[mid] == x:
         return mid
-    elif a[mid] < x:
-        return binary_search_rec(x, a, mid + 1, end)
+    elif arr[mid] < x:
+        return binary_search_rec(x, arr, mid + 1, end)
     else:
-        return binary_search_rec(x, a, pos, mid - 1)
+        return binary_search_rec(x, arr, start, mid - 1)
 
 
-def binary_search(x: int, a):
-    pos = 0
-    end = len(a) - 1
-    return binary_search_rec(x, a, pos, end)
-
-
-print(binary_search(4, [1, 1, 2, 3, 4, 5]))
+data = [1, 1, 2, 3, 3, 5, 5]
+print(binary_search_rec(4, data, 0, len(data) - 1))
